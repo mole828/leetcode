@@ -1,8 +1,5 @@
-from typing import Any, Callable, List, Tuple
-import sys
+from typing import List, Tuple
 import numpy
-print(sys.path)
-
 
 class Solution:
     grid: List[List[int]]
