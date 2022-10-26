@@ -1,18 +1,20 @@
 
 from typing import List
 
+import numpy
+
 class Solution:
     def partitionDisjoint(self, nums: List[int]) -> int:
-        split = 0
-        left_max = nums[0]
-        all_max = nums[0]
-        for i in range(1,len(nums)):
-            if nums[i] >= left_max:
-                all_max = max(all_max, nums[i])
-            else:
-                split = i
-                left_max = all_max
-        return split + 1
+        lm = numpy.Infinity
+        sm = 0
+        index = 0
+        for i in range(len(nums)):
+            num = nums[i]
+            sm = max(sm,num)
+            if num < lm:
+                lm = sm 
+                index = i
+        return index + 1
 
 if __name__ == '__main__':
     sol = Solution()
