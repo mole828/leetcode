@@ -1,10 +1,9 @@
 class Solution:
     def reachNumber(self, target: int) -> int:
         target = abs(target)
-        sum = 0
-        i = 1
-        while True:
+        sum = 1
+        i = 2
+        while sum< target or (sum - target)%2!=0:
             sum += i
-            if sum>= target and (sum - target)%2==0:
-                return i
             i += 1
+        return i-1
