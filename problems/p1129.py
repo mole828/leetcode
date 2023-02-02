@@ -1,7 +1,7 @@
 # author: lcbin
 # link: https://leetcode.cn/problems/shortest-path-with-alternating-colors/solution/python3javacgo-yi-ti-yi-jie-bfsqing-xi-t-ag0i/
 
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
 
 
