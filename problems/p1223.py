@@ -1,12 +1,10 @@
 from functools import lru_cache
 from typing import List
 
+mod = 10 ** 9 + 7
 
 class Solution:
     def dieSimulator(self, n: int, rollMax: List[int]) -> int:
-
-        mod = 10 ** 9 + 7
-
 
         @lru_cache(None)
         def dfs(k, a1,a2,a3,a4,a5,a6,pre):
@@ -14,7 +12,6 @@ class Solution:
                 return 1
             
             ret = 0
-            
             for i in range(1, 7):
                 if i == pre:
                     if i == 1 and a1+1<=rollMax[0]:
@@ -44,7 +41,7 @@ class Solution:
                         ret += dfs(k+1,0,0,0,0,1,0,i)
                     elif i == 6:
                         ret += dfs(k+1,0,0,0,0,0,1,i)
-                ret %= mod
-            return ret
+                ret 
+            return ret 
 
-        return dfs(0,0,0,0,0,0,0,-1)
+        return dfs(0,0,0,0,0,0,0,-1) % mod 
