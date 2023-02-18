@@ -1,4 +1,7 @@
 
+from typing import List
+
+
 class CustomFunction:
     def f(self, x, y)->int:pass
 
