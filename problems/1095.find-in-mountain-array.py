@@ -29,11 +29,7 @@ class Solution:
             return -1
     
 class Solution:
-    def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:
-        @cache
-        def get(i: int):
-            return mountain_arr.get(i)
-        
+    def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:        
         def find_peak():
             left, right = 0, mountain_arr.length() - 1
             while left < right:
@@ -68,6 +64,34 @@ class Solution:
             result = binary_search(peak_index + 1, mountain_arr.length() - 1, False)
         return result
 
+import bisect
+class Solution:
+    def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:        
+        def get(i: int)->int:return mountain_arr.get(i)
+        class MountainList:
+            r: bool = False
+            def __getitem__(self, i: int)->int:
+                return -get(i) if self.r else get(i)
+            def __len__(self)->int:
+                return mountain_arr.length()
+        ml = MountainList()
+        def find_peak() -> int:
+            left, right = 0, mountain_arr.length() - 1
+            while left < right:
+                mid = (left + right) // 2
+                mid_val = ml[mid]
+                if mid_val < ml[mid + 1]:
+                    left = mid + 1
+                else:
+                    right = mid
+            return left
+        
+        peak = find_peak()
+        index = bisect.bisect_left(ml, target,hi=peak+1)
+        if get(index) == target:return index
+        ml.r = True
+        index = bisect.bisect_left(ml, -target, lo=peak, hi=len(ml)-1)
+        return index if get(index) == target else -1
 # @lc code=end
 
 ma = MountainArray()
@@ -75,9 +99,14 @@ solution = Solution()
 Input: list[tuple[list[int], int]] = [
     tuple([[1,5,2], 5]),
     tuple([[1,2,3,4,5,3,1], 3]),
+    tuple([[1,5,2], 2]),
+    tuple([[1,5,2], 0]),
+    tuple([[0,1,2,4,2,1], 3]),
 ]
 for array, target in Input:
-    print('array:', array, 'target:', target, 'ans:', array.index(target))
+    print('array:', array, 'target:', target)
     ma._MountainArray__secret = array
-    print('Answer:', solution.findInMountainArray(target, ma))
-    print('Expected Answer', array.index(target))
+    ans = solution.findInMountainArray(target, ma)
+    print('Answer:', ans)
+    print('Expected Answer', array.index(target) if target in array else -1)
+    print('pass' if (array.index(target) if target in array else -1) == ans else 'error!!!!!!!!')
