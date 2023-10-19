@@ -5,9 +5,6 @@
 #
 
 # @lc code=start
-import regex
-
-
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
         def f(line: str):
