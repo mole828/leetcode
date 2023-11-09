@@ -14,10 +14,10 @@ class Solution:
             if c!=prev:
                 ans += count*(count+1)//2
                 count = 0
-            count += 1
+            count+=1
             prev=c
         ans += count*(count+1)//2 
-        return ans % 10**9+7
+        return ans % (10**9+7)
         
 # @lc code=end
 
