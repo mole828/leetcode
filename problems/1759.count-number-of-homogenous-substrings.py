@@ -7,15 +7,15 @@
 # @lc code=start
 class Solution:
     def countHomogenous(self, s: str) -> int:
-        prev='X'
-        count=0
-        ans=0
+        prev = 'X'
+        count = 0
+        ans = 0
         for c in s:
-            if c!=prev:
+            if c != prev:
                 ans += count*(count+1)//2
                 count = 0
             count+=1
-            prev=c
+            prev = c
         ans += count*(count+1)//2 
         return ans % (10**9+7)
         
