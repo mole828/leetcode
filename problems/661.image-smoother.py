@@ -12,21 +12,18 @@ from typing import List
 
 class Solution:
     def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
-        values = [[0]*len(img[row]) for row in range(len(img))]
-        times = [[0]*len(img[row]) for row in range(len(img))]
-        def add(y: int, x: int, value: int):
-            if 0 <= y < len(values):
-                values_row = values[y]
-                times_row = times[y]
-                if 0 <= x < len(values_row):
-                    values_row[x] += value 
-                    times_row[x] += 1
+        nRows = len(img)
+        nCols = len(img[0])
+        values = [[0]*nCols for row in range(nRows)]
+        times = [[0]*nCols for row in range(nRows)]
         for y, row in enumerate(img):
             for x, value in enumerate(row):
                 for dy,dx in product([-1,0,1],[-1,0,1]):
                     ty = y + dy 
                     tx = x + dx 
-                    add(ty, tx, value)
+                    if 0 <= ty < nRows and 0 <= tx < nCols:
+                        values[ty][tx] += value 
+                        times[ty][tx] += 1
         return [
             [value//times[y][x] for x, value in enumerate(row)]
             for y, row in enumerate(values)
