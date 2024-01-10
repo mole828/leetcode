@@ -8,7 +8,7 @@
 
 from collections import defaultdict
 
-
+# XXX: 可以改
 class Trie:
     data: dict[str, 'Trie']
     words: set[str]
