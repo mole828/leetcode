@@ -27,7 +27,20 @@ class Solution:
             return dp_result
         return min(dp(0, col) for col in range(lengthCol))
         
-        
+class Solution:
+    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        lengthRow = len(matrix)
+        lengthCol = len(matrix[0])
+        for row in range(1,lengthRow):
+            for col in range(lengthCol):
+                matrix[row][col] += min(
+                    matrix[row-1][otherCol] for otherCol in range(
+                        max(0, col-1),
+                        min(col+2, lengthCol)
+                    )
+                )
+        # print(matrix)
+        return min(matrix[-1])
 # @lc code=end
 
 print(Solution().minFallingPathSum(matrix = [[2,1,3],[6,5,4],[7,8,9]]))
