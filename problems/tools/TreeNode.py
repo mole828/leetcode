@@ -8,31 +8,37 @@ class TreeNode:
         self.left = left
         self.right = right
 
+    def __str__(self) -> str:
+        return f"TreeNode({self.val})[{self.left},{self.right}]"
+
 class TreeBuilder:
-    def build(array: list[Optional[int]]) -> TreeNode:
+    def build(array: list[Optional[int]]) -> Optional[TreeNode]:
+        if len(array) == 0:
+            return None 
+        print(array)
         root = TreeNode(array.pop(0))
         que = [root]
         while array:
-            root = que.pop(0)
+            parent = que.pop(0)
             # print(root.val)
             vLeft = array.pop(0)
             if vLeft:
                 left = TreeNode(vLeft)
-                root.left = left 
+                parent.left = left 
                 que.append(left)
-            if not array:
-                break 
-            vRight = array.pop(0)
-            if vRight:
-                right = TreeNode(vRight)
-                root.right = right
-                que.append(right)
-
-            # node.left = TreeNode(next(cur))
-            # node.right = TreeNode(next(cur))
+            if array:
+                vRight = array.pop(0)
+                if vRight:
+                    right = TreeNode(vRight)
+                    parent.right = right
+                    que.append(right)
+            # print(parent)
         return root
+    
+    # def print(node: Optional[TreeNode]):
+
 
 null = None 
 if __name__ == '__main__':
     array = [1,2,null,3,null,4,null,5]
-    TreeBuilder(array)
+    print(TreeBuilder.build(array))
