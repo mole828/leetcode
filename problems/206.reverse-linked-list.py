@@ -24,7 +24,7 @@ class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head:
             return None
-        def reverseList(head: Optional[ListNode]) -> tuple[ListNode,ListNode]:
+        def reverseList(head: ListNode) -> tuple[ListNode,ListNode]:
             print(head, not head.next)
             if not head.next:
                 return (head, head)
