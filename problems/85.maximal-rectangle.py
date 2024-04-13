@@ -10,6 +10,7 @@
 
 # @lcpr-template-end
 # @lc code=start
+from functools import cache
 from typing import List
 
 
@@ -115,6 +116,60 @@ class Solution:
         # Return the maximum area found
         return max_area
  
+class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        @cache
+        def height(row: int, col: int) -> int: 
+            return  (1 + (height(row-1, col) if row > 0 else 0)) if matrix[row][col] == '1' else 0
+        
+        return max(
+            self.largestRectangleArea([height(row,col) for col in range(len(matrix[row]))])
+            for row in range(len(matrix))
+        )
+    
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        # This function calculates the largest rectangle in a histogram.
+      
+        # Length of the heights list
+        num_heights = len(heights)
+      
+        # Stack to keep track of indices for heights
+        stack = []
+      
+        # Arrays to store indices of previous and next smaller heights
+        prev_smaller = [-1] * num_heights
+        next_smaller = [num_heights] * num_heights
+      
+        # Forward pass to find previous smaller heights
+        for i, height in enumerate(heights):
+            # If the current height is lesser than the height at the stack's top index,
+            # pop the stack until a smaller height is found
+            while stack and heights[stack[-1]] >= height:
+                stack.pop()
+            if stack:
+                prev_smaller[i] = stack[-1]
+            stack.append(i)
+      
+        # Reset stack for next pass
+        stack = []
+      
+        # Backward pass to find next smaller heights
+        for i in range(num_heights - 1, -1, -1):
+            cur_height = heights[i]
+            while stack and heights[stack[-1]] >= cur_height:
+                stack.pop()
+            if stack:
+                next_smaller[i] = stack[-1]
+            stack.append(i)
+      
+        # Calculate the largest rectangle area by finding the maximum area
+        # for each height, considering the distance to the previous and next smaller heights.
+        max_area = max(
+            height * (next_smaller[i] - prev_smaller[i] - 1) for i, height in enumerate(heights)
+        )
+      
+        # Return the maximum area found
+        return max_area
 
 # @lc code=end
 
