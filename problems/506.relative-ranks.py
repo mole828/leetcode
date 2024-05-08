@@ -23,7 +23,7 @@ class Solution:
             if i == 2:
                 return "Bronze Medal"
             return str(i+1)
-        score_with_index:tuple[int,int] = []
+        score_with_index:list[tuple[int,int]] = []
         for k,v in enumerate(score):
             score_with_index.append((-v,k))
         score_with_index.sort()
