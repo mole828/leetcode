@@ -16,13 +16,13 @@ from typing import List
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         subs = []
-        def dp(i: int, sub: List[int]):
+        def backtrack(i: int, sub: List[int]):
             if i == len(nums):
                 subs.append(sub)
                 return
-            dp(i+1, sub)
-            dp(i+1, sub+[nums[i]])
-        dp(0,[])
+            backtrack(i+1, sub)
+            backtrack(i+1, sub+[nums[i]])
+        backtrack(0,[])
         return subs
         
 # @lc code=end
