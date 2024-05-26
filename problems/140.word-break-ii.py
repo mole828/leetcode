@@ -22,7 +22,7 @@ class Solution:
                 return
             last = s[i:]
             for word in wordDict:
-                if last.find(word) == 0:
+                if last.startswith(word):
                     find_words(i+len(word), words+[word])
         find_words(0,[])
         return notes
