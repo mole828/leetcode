@@ -11,6 +11,7 @@
 # @lcpr-template-end
 # @lc code=start
 import math
+from typing import List
 
 
 class Solution:
