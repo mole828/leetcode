@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Command configuration",
+            "program": "kotlin",
+            "args": ["$FILE$"],
+        },
+
+    ]
+}
