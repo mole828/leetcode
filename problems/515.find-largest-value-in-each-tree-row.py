@@ -4,20 +4,21 @@
 # [515] Find Largest Value in Each Tree Row
 #
 
+from tools.TreeNode import TreeNode
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 # Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+
 from collections import defaultdict
 from typing import List, Optional
 
 
 class Solution:
     def largestValues(self, root: Optional[TreeNode]) -> List[int]:
-        rows_max = defaultdict(lambda:-1<<32)
+        rows_max = defaultdict(lambda:-1<<32) # -2^31 <= Node.val <= 2^31 - 1
         def dfs(node: Optional[TreeNode], deep: int):
             if node:
                 rows_max[deep] = max(rows_max[deep], node.val)
