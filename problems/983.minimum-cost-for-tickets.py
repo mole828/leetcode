@@ -4,11 +4,16 @@
 # [983] Minimum Cost For Tickets
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 from bisect import bisect_left
 from functools import cache
 from typing import List
 
+#第二次 2024-12-31
 class Solution:
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
         @cache
