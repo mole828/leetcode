@@ -4,6 +4,13 @@
 # [1422] Maximum Score After Splitting a String
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
+
+# 2025-01-01 第二次遇到
+
 # @lc code=start
 class Solution:
     def maxScore(self, s: str) -> int:
