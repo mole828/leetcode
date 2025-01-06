@@ -4,6 +4,10 @@
 # [1930] Unique Length-3 Palindromic Subsequences
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 from collections import defaultdict
 from functools import cache
@@ -36,6 +40,8 @@ class Solution:
             a,b = min(index[c]), max(index[c])
             ans += len(set(s[a+1:b])) 
         return ans
+
+# 2025-01-04 第二次遇到
 
 # @lc code=end
 
