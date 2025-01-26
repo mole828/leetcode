@@ -10,6 +10,7 @@
 
 # @lcpr-template-end
 # @lc code=start
+from collections import deque
 from typing import List
 
 
