@@ -45,7 +45,7 @@ class Solution:
         for i in range(n):
             for j in range(n):
                 dfs(i,j)
-        def reflect(i: int, j: int) -> int:
+        def reverse(i: int, j: int) -> int:
             if grid[i][j] == 1:
                 return id_size[id_map[(i,j)]]
             else:
@@ -55,7 +55,7 @@ class Solution:
                         if id_map[(x,y)]:
                             ids.add(id_map[(x,y)])
                 return 1 + sum(id_size[_id] for _id in ids)
-        res_mat = [[reflect(i,j) for j in range(n)] for i in range(n)]
+        res_mat = [[reverse(i,j) for j in range(n)] for i in range(n)]
         return max(max(row) for row in res_mat)
             
 
