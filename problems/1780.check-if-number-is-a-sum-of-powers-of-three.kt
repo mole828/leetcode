@@ -13,7 +13,7 @@ class Solution {
             43046721, 129140163, 387420489, 1162261467
         )
         var num = n
-        for (i in threeNums.size - 1 downTo 0) {
+        for (i in (threeNums.size-1).downTo(0)) {
             if (num >= threeNums[i]) {
                 num -= threeNums[i]
             }
@@ -38,4 +38,7 @@ class Solution {
 
 fun main() {
     Solution().myGuess()
+    println(Solution().checkPowersOfThree(12)) // true
+    println(Solution().checkPowersOfThree(91)) // true
+    println(Solution().checkPowersOfThree(21)) // false
 }
