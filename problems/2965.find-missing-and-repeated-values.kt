@@ -9,10 +9,9 @@ package p2965
 // @lc code=start
 class Solution {
     fun findMissingAndRepeatedValues(grid: Array<IntArray>): IntArray {
-        val gridSize = grid.sumOf({it.size})
         val nums = grid.flatMap { it.toList() }
         val hasSet = nums.toSet()
-        val shouldSet = (1..gridSize).toSet()
+        val shouldSet = (1..nums.size).toSet()
         val missing = shouldSet.minus(hasSet).first()
         val repeated = nums.groupBy { it }.filter { it.value.size > 1 }.keys.first()
         return intArrayOf(repeated, missing)
