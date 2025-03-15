@@ -1,3 +1,4 @@
+package p1
 
 class Solution {
     fun twoSum(nums: IntArray, target: Int): IntArray {
@@ -13,4 +14,6 @@ class Solution {
     }
 }
 
-Solution().twoSum(intArrayOf(2,7,11,13), 9).map { it }
+fun main() {
+    println(Solution().twoSum(intArrayOf(2,7,11,13), 9).map { it })
+}
