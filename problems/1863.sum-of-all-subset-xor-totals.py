@@ -12,7 +12,8 @@
 # @lc code=start
 from typing import List
 
-
+# day1 May 20, 2024
+# day2 April 5, 2025
 class Solution:
     def subsetXORSum(self, nums: List[int]) -> int:
         self.sum = 0
