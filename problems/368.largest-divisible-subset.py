@@ -4,7 +4,12 @@
 # [368] Largest Divisible Subset
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
+from functools import cache
 from typing import List
 
 # Memory Limit Exceeded, 47 / 49 testcases passed
@@ -38,7 +43,8 @@ class Solution:
         print(root)
 
         return findDeep(root)
-                
+
+# day1 Feb 09, 2024
 class Solution:
     def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
         nums.sort()
@@ -64,7 +70,28 @@ class Solution:
 
         return result
 
+# day2 May 06, 2025
+class Solution:
+    def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
+        nums.sort()
+        @cache
+        def findDeep(index: int) -> List[int]:
+            this_num = nums[index]
+            longest = []
+            for j in range(index):
+                if this_num % nums[j] == 0:
+                    arr = findDeep(j)
+                    if len(arr) > len(longest):
+                        longest = arr
+            return [this_num] + longest
+        longest = []
+        for i in range(len(nums)):
+            arr = findDeep(i)
+            if len(arr) > len(longest):
+                longest = arr
+        return longest
 
 # @lc code=end
+
 
 print(Solution().largestDivisibleSubset([1,2,3]))
