@@ -28,6 +28,7 @@ class Solution:
         return ans
     
 
+# 2025-04-19
 class Solution:
     def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
         nums.sort()
