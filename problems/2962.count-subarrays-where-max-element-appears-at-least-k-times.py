@@ -24,7 +24,7 @@ class Solution:
                     count += 1 
                     # print(sub)
         return count
-    
+    # Time Limit Exceeded, 622/633 cases passed
     def countSubarrays(self, nums: List[int], k: int) -> int:
         count = 0 
         max_num = max(nums) 
@@ -58,6 +58,19 @@ class Solution:
             window.pop(0)
         return count
         
+class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        mx = max(nums)
+        ans = cnt_mx = left = 0
+        for x in nums:
+            if x == mx:
+                cnt_mx += 1
+            while cnt_mx == k:
+                if nums[left] == mx:
+                    cnt_mx -= 1
+                left += 1
+            ans += left
+        return ans
 
 # @lc code=end
 
