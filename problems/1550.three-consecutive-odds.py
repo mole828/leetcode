@@ -12,7 +12,7 @@
 # @lc code=start
 from typing import List
 
-
+# day2 2025-05-11
 class Solution:
     def threeConsecutiveOdds(self, arr: List[int]) -> bool:
         last = 3
