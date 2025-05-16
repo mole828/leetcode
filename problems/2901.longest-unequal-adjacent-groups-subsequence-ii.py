@@ -16,7 +16,7 @@ class Solution:
         @cache
         def dfs(i: int) -> List[str]:
             if i == len(words):
-                return 0
+                return []
             group = groups[i]
             word = words[i]
             longest = []

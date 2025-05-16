@@ -12,7 +12,7 @@ from typing import List
 class Solution:
     def getLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
         @cache
-        def dfs(i: int) -> List[tuple[int, int]]:
+        def dfs(i: int) -> List[tuple[int, int, str]]:
             if i == len(words):
                 return []
             group = groups[i]
@@ -34,7 +34,7 @@ class Solution:
             if len(sub) > len(ans):
                 ans = sub
 
-        return [w for i, _, w in ans]
+        return [w for _, _, w in ans]
         
 # @lc code=end
 
