@@ -14,7 +14,7 @@
 # link https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/solutions/1360662/by-ac_oier-m3zl/
 class Solution:
     def findKthNumber(self, n: int, k: int) -> int:
-        def get_cnt(x, limit):
+        def get_cnt(x: int, limit: int):
             a, b = str(x), str(limit)
             k = len(b) - len(a)
             ans = sum(10 ** i for i in range(k)) if k else 0
