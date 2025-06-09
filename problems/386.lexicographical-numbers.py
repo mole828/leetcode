@@ -12,7 +12,7 @@
 # @lc code=start
 from typing import List
 
-
+# 20250608 day2
 class Solution:
     def lexicalOrder(self, n: int) -> List[int]:
         result = []
