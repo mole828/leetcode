@@ -17,7 +17,7 @@ class Solution:
             i = nums.pop() 
             box.append(i)
             if len(box) == 3:
-                if max(box)-min(box) > k:
+                if box[0] - box[2] > k:
                     return []
                 answer.append(box)
                 box = [] 
