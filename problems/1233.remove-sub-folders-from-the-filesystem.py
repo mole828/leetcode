@@ -12,7 +12,7 @@
 # @lc code=start
 from typing import List
 
-
+# 2025-07-19 day 2
 class Solution:
     def removeSubfolders(self, folder: List[str]) -> List[str]:
         folder.sort()
