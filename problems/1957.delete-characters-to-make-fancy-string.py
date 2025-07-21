@@ -10,6 +10,8 @@
 
 # @lcpr-template-end
 # @lc code=start
+
+# 2025-07-21 day 2
 class Solution:
     def makeFancyString(self, s: str) -> str:
         ans = s[0]
