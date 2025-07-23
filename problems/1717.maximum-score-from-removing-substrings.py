@@ -10,11 +10,15 @@
 
 # @lcpr-template-end
 # @lc code=start
+
+# 2025-07-23 day 2
+
 class Solution:
     def maximumGain(self, s: str, x: int, y: int):
         if x < y:
             x, y, s = y, x, s[::-1]
         a = b = ans = 0
+        # a 抽象栈
         for c in s:
             if c == 'a':
                 a += 1
