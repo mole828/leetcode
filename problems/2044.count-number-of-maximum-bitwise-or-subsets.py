@@ -14,6 +14,7 @@ from functools import reduce
 from typing import List
 
 
+# 2025-07-28 day2
 class Solution:
     def countMaxOrSubsets(self, nums: List[int]) -> int:
         target = reduce(lambda x, y: x | y, nums)
