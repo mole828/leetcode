@@ -13,6 +13,7 @@
 from typing import List
 
 
+# 2025-07-30 day2
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
         mx = max(nums)
