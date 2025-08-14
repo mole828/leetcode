@@ -21,5 +21,26 @@ class Solution:
             r+=1
             
         return res
+    
+class Solution:
+    def largestGoodInteger(self, num: str) -> str:
+        last_char = 'a'
+        count = 1
+        res = ""
+        for char in num:
+            if char == last_char:
+                count += 1
+            else:
+                if count >= 3:
+                    res = max(res, last_char * 3)
+                last_char = char
+                count = 1
+            # print(char, count)
+        if count >= 3:
+            res = max(res, last_char * 3)
+        return res
+
 # @lc code=end
 
+# print(Solution().largestGoodInteger("6777133339"))
+print(Solution().largestGoodInteger("2213"))
