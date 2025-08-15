@@ -7,7 +7,7 @@
 # @lc code=start
 class Solution:
     def isPowerOfFour(self, n: int) -> bool:
-        mask = 0x55555555
+        mask = 0x55555555 # 二进制表示为 01010101010101010101010101010101
         return n > 0 and (n & (n - 1)) == 0 and (n & mask) == n
 # @lc code=end
 
