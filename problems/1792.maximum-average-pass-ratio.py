@@ -13,7 +13,7 @@
 import heapq
 from typing import List
 
-
+# 2025-09-01 day2
 class Solution:
     def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
         delta_heap = [(p / t - (p + 1) / (t + 1), p, t) for p, t in classes]
