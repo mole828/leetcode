@@ -5,6 +5,10 @@
 #
 # 文字理解
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 class Solution:
     def sortVowels(self, input_str: str) -> str:
