@@ -10,7 +10,7 @@ from typing import List
 
 from sortedcontainers import SortedList
 
-
+# 2025-09-17 day2
 class FoodRatings:
     __food2cuisine: dict[str, str]
     __food2rating: dict[str, int]
