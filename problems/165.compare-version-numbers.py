@@ -10,6 +10,8 @@
 
 # @lcpr-template-end
 # @lc code=start
+
+# 2025-09-23 day2
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
         iter1 = [int(s) for s in version1.split('.')]
