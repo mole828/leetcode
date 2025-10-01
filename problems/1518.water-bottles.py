@@ -10,6 +10,7 @@
 
 # @lcpr-template-end
 # @lc code=start
+# 2025-10-01 day2
 class Solution:
     def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
         drink = 0
