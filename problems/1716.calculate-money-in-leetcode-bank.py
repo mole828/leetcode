@@ -4,6 +4,10 @@
 # [1716] Calculate Money in Leetcode Bank
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 
 # HACK: 可以优化
