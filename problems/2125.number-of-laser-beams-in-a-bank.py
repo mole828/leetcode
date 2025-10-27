@@ -5,8 +5,11 @@
 #
 
 # @lc code=start
+from typing import List
+
+
 class Solution(object):
-    def numberOfBeams(self, bank):
+    def numberOfBeams(self, bank: List[str]) -> int:
         prev_row_count = 0
         total = 0
 
@@ -20,5 +23,13 @@ class Solution(object):
 
         return total
 
+    def numberOfBeams(self, bank: List[str]) -> int:
+        ans = pre_cnt = 0
+        for row in bank:
+            cnt = row.count('1')
+            if cnt > 0:
+                ans += pre_cnt * cnt
+                pre_cnt = cnt
+        return ans
 # @lc code=end
 
