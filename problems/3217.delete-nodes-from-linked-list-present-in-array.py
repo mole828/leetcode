@@ -18,7 +18,7 @@ from tools.ListNode import ListNode
 #         self.next = next
 from typing import List, Optional
 
-
+# same +1
 class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
         nums = set(nums)
