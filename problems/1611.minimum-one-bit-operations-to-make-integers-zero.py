@@ -4,6 +4,10 @@
 # [1611] Minimum One Bit Operations to Make Integers Zero
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 from functools import cache
 import math
