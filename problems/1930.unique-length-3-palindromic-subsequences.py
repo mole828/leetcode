@@ -33,11 +33,11 @@ class Solution:
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
         index = defaultdict(set)
-        for i,c in enumerate(s):
-            index[c].add(i)
+        for i,char in enumerate(s):
+            index[char].add(i)
         ans = 0
-        for c in index:
-            a,b = min(index[c]), max(index[c])
+        for char in index:
+            a,b = min(index[char]), max(index[char])
             ans += len(set(s[a+1:b])) 
         return ans
 
