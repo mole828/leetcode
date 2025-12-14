@@ -10,6 +10,9 @@
 
 # @lcpr-template-end
 # @lc code=start
+from typing import List
+
+
 BUSINESS_LINE_TO_CATEGORY = {
     "electronics": 0,
     "grocery": 1,

@@ -4,6 +4,10 @@
 # [2147] Number of Ways to Divide a Long Corridor
 #
 
+
+# @lcpr-template-start
+
+# @lcpr-template-end
 # @lc code=start
 from collections import Counter
 from functools import reduce
