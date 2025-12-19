@@ -73,4 +73,5 @@ class Solution:
         return list(known_set)
 # @lc code=end
 
-print(Solution().findAllPeople(n = 6, meetings = [[1,2,5],[2,3,8],[1,5,10]], firstPerson = 1))
+if __name__ == "__main__":
+    print(Solution().findAllPeople(n = 6, meetings = [[1,2,5],[2,3,8],[1,5,10]], firstPerson = 1))
