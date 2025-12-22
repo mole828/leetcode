@@ -11,24 +11,15 @@ from typing import List
 
 class Solution:
     def minDeletionSize(self, strs: List[str]) -> int:
-        @cache
-        def can_append(col: int, last_col: int) -> bool:
-            for row in range(len(strs)):
-                if strs[row][col] < strs[row][last_col]:
-                    return False
-            return True
-        @cache
-        def dfs(col: int) -> int:
-            if col == len(strs[0]):
-                return 0
-            keep = float('-inf')
-            for next_col in range(col + 1, len(strs[0])):
-                if can_append(next_col, col):
-                    keep = max(keep, 1 + dfs(next_col))
-            skip = dfs(col + 1)
-            return max(keep, skip)
-        max_keep = dfs(0)
-        return len(strs[0]) - max_keep
+        m = len(strs[0])
+        f = [0] * m
+        for i in range(m):
+            for j in range(i):
+                if f[j] > f[i] and all(s[j] <= s[i] for s in strs):
+                    f[i] = f[j]
+            f[i] += 1
+        return m - max(f)
+
 # @lc code=end
 
 if __name__ == "__main__":
