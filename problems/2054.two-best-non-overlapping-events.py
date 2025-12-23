@@ -23,7 +23,7 @@ class Solution:
         points.sort()
         max_value = 0
         ans = 0
-        for index, status, value in points:
+        for _, status, value in points:
             if status == 0:
                 ans = max(ans, max_value + value)
             else:
