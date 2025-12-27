@@ -71,9 +71,7 @@ class Solution:
         room_used = [len(room) for room in rooms]
         return room_used.index(max(room_used))
             
-            
-
-                
+    
 # @lc code=end
 
 print(Solution().mostBooked(n = 2, meetings = [[0,10],[1,5],[2,7],[3,4]]))
