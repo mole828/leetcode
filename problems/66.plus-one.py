@@ -14,5 +14,5 @@ class Solution:
 # @lc code=end
 
 if __name__ == '__main__':
-    print(Solution().plusOne([1,2,3]))
+    print(Solution().plusOne([2,0,2,6]))
 
