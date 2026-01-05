@@ -26,7 +26,8 @@ class Solution:
         
 # @lc code=end
 
-print(Solution().maxMatrixSum([[1, 2, 3], [-1, -2, -3], [1, 2, 3]]))
+if __name__ == "__main__":
+    print(Solution().maxMatrixSum([[1, 2, 3], [-1, -2, -3], [1, 2, 3]]))
 
 #
 # @lcpr case=start
