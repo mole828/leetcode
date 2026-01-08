@@ -76,4 +76,6 @@ class Solution:
         return dp(len(nums1)-1,len(nums2)-1)
 
 # @lc code=end
-print(Solution().maxDotProduct(nums1 = [2,1,-2,5], nums2 = [3,0,-6]))
+
+if __name__ == '__main__':
+    print(Solution().maxDotProduct(nums1 = [2,1,-2,5], nums2 = [3,0,-6]))
