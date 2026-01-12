@@ -40,6 +40,6 @@ class Solution:
         return c
 # @lc code=end
 
-# print(Solution().minTimeToVisitAllPoints([[1,1],[3,4],[-1,0]]))
-
-print(Solution().minTimeToVisitAllPoints([[3,2],[-2,2]]))
+if __name__ == "__main__":
+    # print(Solution().minTimeToVisitAllPoints([[1,1],[3,4],[-1,0]]))
+    print(Solution().minTimeToVisitAllPoints([[3,2],[-2,2]]))
