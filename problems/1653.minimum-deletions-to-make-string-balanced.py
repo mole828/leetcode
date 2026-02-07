@@ -23,7 +23,8 @@ class Solution:
 
 # @lc code=end
 
-
+if __name__ == "__main__":
+    print(Solution().minimumDeletions("aababbab"))
 
 #
 # @lcpr case=start
