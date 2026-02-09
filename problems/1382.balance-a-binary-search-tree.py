@@ -37,7 +37,7 @@ class Solution:
                 )
             return None
         return to_balance(arr)
-        
+
 # @lc code=end
 
 from tools.TreeNode import TreeBuilder
