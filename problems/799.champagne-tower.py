@@ -19,3 +19,8 @@ class Solution:
         return min(1, row[query_glass])
 # @lc code=end
 
+if __name__ == "__main__":
+    s = Solution()
+    print(s.champagneTower(1, 1, 1))
+    print(s.champagneTower(2, 1, 1))
+    print(s.champagneTower(100000009, 33, 17))
