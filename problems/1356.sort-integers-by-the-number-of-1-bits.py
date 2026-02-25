@@ -17,3 +17,5 @@ class Solution:
         
 # @lc code=end
 
+if __name__ == "__main__":
+    pass
