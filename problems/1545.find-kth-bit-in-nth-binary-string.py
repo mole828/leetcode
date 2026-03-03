@@ -31,7 +31,8 @@ class Solution:
         return get(n)[k - 1]
 # @lc code=end
 
-
+if __name__ == "__main__":
+    pass
 
 #
 # @lcpr case=start
