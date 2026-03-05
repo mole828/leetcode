@@ -10,7 +10,7 @@ class Solution:
         diff = [0, 0]
         for c in s:
             num = int(c)
-            diff[num]+=1
+            diff[num] += 1
             diff.reverse()
         return min(diff)
 # @lc code=end
