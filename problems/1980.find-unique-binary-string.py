@@ -25,5 +25,14 @@ class Solution:
         return ''
         
         
+class Solution:
+    def findDifferentBinaryString(self, nums: List[str]) -> str:
+        n = len(nums)
+        nums_set = set(nums)
+        for i in range(2 ** n):
+            possible = bin(i)[2:].zfill(n)
+            if possible not in nums_set:
+                return possible
+        return ''
 # @lc code=end
 
