@@ -8,6 +8,12 @@ import kotlin.math.abs
  * [1320] Minimum Distance to Type a Word Using Two Fingers
  */
 // @lc code=start
+fun <P1, P2, P3, R> ((P1, P2, P3) -> R).memoize(): (P1, P2, P3) -> R {
+    val cache = mutableMapOf<Triple<P1, P2, P3>, R>()
+    return { p1, p2, p3 ->
+        cache.getOrPut(Triple(p1, p2, p3)) { this(p1, p2, p3) }
+    }
+}
 class Solution {
     val getCoord = { c: Char ->
         val index = c - 'A'
@@ -21,24 +27,20 @@ class Solution {
         abs(r1 - r2) + abs(c1 - c2)
     }
     fun minimumDistance(word: String): Int {
-        val cache = mutableMapOf<Triple<Int, Char, Char>, Int>()
-        fun dfs(index: Int, c1: Char, c2: Char): Int { 
-            if (index == word.length) return 0
-            val key = Triple(index, c1, c2)
-            cache[key]?.let { return it }
-            val c = word[index]
-            val dist1 = getDist(c1, c) + dfs(index + 1, c, c2)
-            val dist2 = getDist(c2, c) + dfs(index + 1, c1, c)
-            val res = dist1.coerceAtMost(dist2)
-            cache[key] = res
-            return res
-        }
-        val firstChar = word[0]
-        return ('A'..'Z').minOf {
-            dfs(1, firstChar, it)
-        }
-    }
+        lateinit var dfs: (Int, Char, Char) -> Int
+    
+        dfs = { index: Int, c1: Char, c2: Char ->
+            if (index == word.length) 0
+            else {
+                val c = word[index]
+                val res1 = getDist(c1, c) + dfs(index + 1, c, c2)
+                val res2 = getDist(c2, c) + dfs(index + 1, c1, c)
+                res1.coerceAtMost(res2)
+            }
+        }.memoize()
 
+        return ('A'..'Z').minOf { dfs(1, word[0], it) } 
+    }
 }
 // @lc code=end
 
