@@ -6,7 +6,7 @@ package problems.p788
  */
 // @lc code=start
 class Solution {
-    fun isGood(n: Int) = 
+    fun isGood(n: Int): Boolean = 
         n.toString().fold(false) { changed, c ->
         when (c) {
             '3', '4', '7' -> return false
