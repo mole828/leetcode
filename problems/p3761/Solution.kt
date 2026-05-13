@@ -1,4 +1,4 @@
-package problems.p3761
+package p3761
 
 /*
  * @lc app=leetcode id=3761 lang=kotlin

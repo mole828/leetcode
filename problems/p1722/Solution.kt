@@ -1,4 +1,4 @@
-package problems.p1722
+package p1722
 
 import kotlin.math.absoluteValue
 

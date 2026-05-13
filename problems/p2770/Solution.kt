@@ -1,4 +1,4 @@
-package problems.p2770
+package p2770
 
 import kotlin.math.absoluteValue
 

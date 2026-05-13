@@ -1,4 +1,4 @@
-package problems.p3070
+package p3070
 /*
  * @lc app=leetcode id=3070 lang=kotlin
  *

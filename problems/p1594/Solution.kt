@@ -1,4 +1,4 @@
-package problems.p1594
+package p1594
 /*
  * @lc app=leetcode id=1594 lang=kotlin
  *

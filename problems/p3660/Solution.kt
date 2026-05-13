@@ -1,6 +1,6 @@
-package problems.p3660
+package p3660
 
-import problems.p2463.INF
+import p2463.INF
 
 /*
  * @lc app=leetcode id=3660 lang=kotlin

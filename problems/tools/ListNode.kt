@@ -1,4 +1,4 @@
-package problems.tools
+package tools
 
 class ListNode(var `val`: Int = 0, var next: ListNode? = null) {
     override fun toString(): String = "$`val`->$next"

@@ -1,4 +1,4 @@
-package problems.p2033
+package p2033
 /*
  * @lc app=leetcode id=2033 lang=kotlin
  *

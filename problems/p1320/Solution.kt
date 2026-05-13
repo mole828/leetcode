@@ -1,4 +1,4 @@
-package problems.p1320
+package p1320
 
 import kotlin.math.abs
 

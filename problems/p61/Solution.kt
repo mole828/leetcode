@@ -1,6 +1,6 @@
-package problems.p61
+package p61
 
-import problems.tools.ListNode
+import tools.ListNode
 
 /*
  * @lc app=leetcode id=61 lang=kotlin

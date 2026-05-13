@@ -1,4 +1,4 @@
-package problems.p3212
+package p3212
 /*
  * @lc app=leetcode id=3212 lang=kotlin
  *
