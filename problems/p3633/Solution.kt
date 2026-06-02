@@ -143,7 +143,7 @@
 package p3633
 // @lc code=start
 class Solution {
-    fun earliestFinishTime(landStartTime: IntArray, landDuration: IntArray, waterStartTime: IntArray, waterDuration: IntArray): Int {
+    fun earliestFinishTime0(landStartTime: IntArray, landDuration: IntArray, waterStartTime: IntArray, waterDuration: IntArray): Int {
         fun landFirst(landIndex: Int, waterIndex: Int): Int {
             val landFinishTime = landStartTime[landIndex] + landDuration[landIndex]
             val waterStart = maxOf(waterStartTime[waterIndex], landFinishTime)
@@ -162,6 +162,22 @@ class Solution {
             }
         }
         return ans
+    }
+    fun earliestFinishTime(landStartTime: IntArray, landDuration: IntArray, waterStartTime: IntArray, waterDuration: IntArray): Int {
+        fun afterTime(
+            startTime: IntArray, duration: IntArray, time: Int
+        ): Int {
+            var ans = Int.MAX_VALUE
+            for (i in startTime.indices) {
+                val start = maxOf(startTime[i], time)
+                ans = minOf(ans, start + duration[i])
+            }
+            return ans
+        }
+        return minOf(
+            afterTime(landStartTime, landDuration, afterTime(waterStartTime, waterDuration, 0)),
+            afterTime(waterStartTime, waterDuration, afterTime(landStartTime, landDuration, 0))
+        )
     }
 }
 // @lc code=end
