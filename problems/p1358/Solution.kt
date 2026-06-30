@@ -10,7 +10,7 @@ package p1358
 class Solution {
     // Time Limit Exceeded
     // 23/54 cases passed (N/A)
-    fun _numberOfSubstrings(s: String): Int {
+    fun numberOfSubstrings0(s: String): Int {
         var ans = 0
         for(left in 0.until(s.length)) {
             for(right in left..s.length) {
@@ -27,7 +27,7 @@ class Solution {
 
     // Time Limit Exceeded
     // 48/54 cases passed (N/A)
-    fun __numberOfSubstrings(s: String): Int {
+    fun numberOfSubstrings1(s: String): Int {
         var ans = 0
         for(left in 0.until(s.length)) {
             var ca = 0
@@ -56,7 +56,8 @@ class Solution {
         while (right<s.length) {
             val newChar = s[right]
             right += 1
-            count.set(newChar, count.getOrDefault(newChar, 0)+1)
+            // count.set(newChar, count.getOrDefault(newChar, 0)+1)
+            count[newChar] = count.getOrDefault(newChar, 0) + 1
             while((count.keys.size==3)and(left<right)) {
                 ans += s.length - right + 1
                 // println("$left $right $count")
@@ -66,7 +67,8 @@ class Solution {
                 if (last == 0) {
                     count.remove(popChar)
                 } else {
-                    count.set(popChar, last)
+                    // count.set(popChar, last)
+                    count[popChar] = last
                 }
             }
         }
