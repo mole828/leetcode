@@ -46,4 +46,6 @@ if [[ "$problem_number" != <-> ]] || [[ ! -f "$solution" ]]; then
     exit 2
 fi
 
-exec gradle -p "$LEETCODE_RUN_ROOT" run "-PmainClass=p$problem_number.SolutionKt"
+exec gradle -p "$LEETCODE_RUN_ROOT" run \
+    "-PproblemNumber=$problem_number" \
+    "-PmainClass=p$problem_number.SolutionKt"

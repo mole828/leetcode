@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.3.21"
+    kotlin("jvm") version "2.4.0"
     application
 }
 
@@ -10,6 +10,9 @@ repositories {
 sourceSets {
     main {
         kotlin.srcDir("problems")
+        providers.gradleProperty("problemNumber").orNull?.let { problemNumber ->
+            kotlin.include("p$problemNumber/Solution.kt")
+        }
     }
 }
 
