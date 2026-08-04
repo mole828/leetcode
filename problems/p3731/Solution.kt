@@ -77,19 +77,11 @@ package p3731
 // @lc code=start
 class Solution {
     fun findMissingElements(nums: IntArray): List<Int> {
-        var maxNum = nums.first()
-        var minNum = nums.first()
-        val numSet = mutableSetOf<Int>()
-        nums.forEach { num ->
-            if (num>maxNum) maxNum = num
-            if (num<minNum) minNum = num
-            numSet.add(num)
-        }
-        val lostList = mutableListOf<Int>()
-        (minNum..maxNum).forEach { num ->
-            if ((num in numSet).not()) lostList.add(num)
-        }
-        return lostList
+        val maxNum = nums.max()
+        val minNum = nums.min()
+        val fullSet = (minNum..maxNum).toSet()
+        val numSet = nums.toSet()
+        return fullSet.subtract(numSet).sorted()
     }
 }
 // @lc code=end
