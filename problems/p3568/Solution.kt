@@ -9,44 +9,43 @@ package p3568
 // @lc code=start
 class Solution {
     data class State(
-        val x: Int,
-        val y: Int,
-        val e: Int,
-        val mask: Int
+        val position: Int,
+        val energy: Int,
+        val litterMask: Int
     )
 
     fun minMoves(classroom: Array<String>, energy: Int): Int {
-        val m = classroom.size
-        val n = classroom[0].length
+        val rowCount = classroom.size
+        val columnCount = classroom[0].length
 
-        val litterIndex = Array(m) { IntArray(n) { -1 } }
+        val litterIndexes = Array(rowCount) { IntArray(columnCount) { -1 } }
 
-        var start = 0 to 0
+        var startPosition = 0
         var litterCount = 0
 
-        classroom.forEachIndexed { x, row ->
-            row.forEachIndexed { y, c ->
-                when (c) {
-                    'S' -> start = x to y
-                    'L' -> litterIndex[x][y] = litterCount++
+        classroom.forEachIndexed { row, line ->
+            line.forEachIndexed { column, cell ->
+                when (cell) {
+                    'S' -> startPosition = row * columnCount + column
+                    'L' -> litterIndexes[row][column] = litterCount++
                 }
             }
         }
 
         if (litterCount == 0) return 0
 
-        val target = (1 shl litterCount) - 1
-        val visited = Array(m * n) {
+        val targetLitterMask = (1 shl litterCount) - 1
+        val maximumEnergy = Array(rowCount * columnCount) {
             IntArray(1 shl litterCount) { -1 }
         }
 
         val queue = ArrayDeque<State>().apply {
-            add(State(start.first, start.second, energy, 0))
+            add(State(startPosition, energy, 0))
         }
 
-        visited[start.first * n + start.second][0] = energy
+        maximumEnergy[startPosition][0] = energy
 
-        val dirs = arrayOf(
+        val directions = arrayOf(
             -1 to 0,
             1 to 0,
             0 to -1,
@@ -57,38 +56,44 @@ class Solution {
 
         while (queue.isNotEmpty()) {
             repeat(queue.size) {
-                val (x, y, e, mask) = queue.removeFirst()
+                val (position, currentEnergy, litterMask) = queue.removeFirst()
 
-                if (mask == target) return moves
-                if (e == 0) return@repeat
+                if (litterMask == targetLitterMask) return moves
+                if (currentEnergy == 0) return@repeat
 
-                for ((dx, dy) in dirs) {
-                    val nx = x + dx
-                    val ny = y + dy
+                val row = position / columnCount
+                val column = position % columnCount
 
-                    if (nx !in classroom.indices ||
-                        ny !in classroom[0].indices ||
-                        classroom[nx][ny] == 'X'
+                for ((rowOffset, columnOffset) in directions) {
+                    val nextRow = row + rowOffset
+                    val nextColumn = column + columnOffset
+
+                    if (
+                        nextRow !in classroom.indices ||
+                        nextColumn !in classroom[0].indices ||
+                        classroom[nextRow][nextColumn] == 'X'
                     ) continue
 
-                    val cell = classroom[nx][ny]
+                    val cell = classroom[nextRow][nextColumn]
+                    val nextPosition = nextRow * columnCount + nextColumn
 
-                    val ne = if (cell == 'R') energy else e - 1
+                    val nextEnergy =
+                        if (cell == 'R') energy else currentEnergy - 1
 
-                    val nm = if (cell == 'L') {
-                        mask or (1 shl litterIndex[nx][ny])
-                    } else {
-                        mask
-                    }
+                    val nextLitterMask =
+                        if (cell == 'L')
+                            litterMask or (1 shl litterIndexes[nextRow][nextColumn])
+                        else
+                            litterMask
 
-                    if (nm == target) return moves + 1
+                    if (nextLitterMask == targetLitterMask)
+                        return moves + 1
 
-                    val pos = nx * n + ny
+                    if (maximumEnergy[nextPosition][nextLitterMask] >= nextEnergy)
+                        continue
 
-                    if (visited[pos][nm] >= ne) continue
-
-                    visited[pos][nm] = ne
-                    queue += State(nx, ny, ne, nm)
+                    maximumEnergy[nextPosition][nextLitterMask] = nextEnergy
+                    queue += State(nextPosition, nextEnergy, nextLitterMask)
                 }
             }
 
