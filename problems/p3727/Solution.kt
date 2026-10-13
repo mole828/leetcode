@@ -78,11 +78,10 @@ class Solution {
     fun maxAlternatingSum(nums: IntArray): Long {
         val squares = nums.map { it*it }.sorted().toMutableList()
         var ans = 0L
-        while (squares.size >= 2) {
+        while (squares.isNotEmpty()) {
             ans += squares.removeLast()
-            ans -= squares.removeFirst()
+            if (squares.isNotEmpty()) ans -= squares.removeFirst()
         }
-        if (squares.size == 1) ans+=squares.removeLast()
         return ans
     }
 }
