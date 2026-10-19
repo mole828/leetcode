@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+source "${0:A:h}/scripts/lib/env.zsh" || exit $?
+
+# An explicit path takes priority over automatic discovery.
+if [[ -n "${LEETCODE_CLI:-}" ]]; then
+  if [[ ! -x "$LEETCODE_CLI" ]]; then
+    print -u2 -r -- "LEETCODE_CLI is not executable: $LEETCODE_CLI"
+    exit 1
+  fi
+  cli="$LEETCODE_CLI"
+else
+  # Prefer a separately installed CLI on PATH, skipping this wrapper.
+  for candidate in ${(f)"$(whence -pa leetcode)"}; do
+    if [[ "${candidate:A}" != "${0:A}" && -x "$candidate" ]]; then
+      cli="$candidate"
+      break
+    fi
+  done
+
+  # Fall back to the CLI bundled with the VS Code LeetCode extension.
+  if [[ -z "${cli:-}" ]]; then
+    for candidate in "$HOME"/.vscode{,-server}/extensions/leetcode.vscode-leetcode-*/node_modules/vsc-leetcode-cli/bin/leetcode(NOn); do
+      if [[ -x "$candidate" ]]; then
+        cli="$candidate"
+        break
+      fi
+    done
+  fi
+fi
+
+if [[ -z "${cli:-}" ]]; then
+  print -u2 -- 'LeetCode CLI not found. Install the VS Code LeetCode extension or set LEETCODE_CLI to its executable path.'
+  exit 1
+fi
+if [[ "${cli:A}" == "${0:A}" ]]; then
+  print -u2 -- 'LEETCODE_CLI points to this wrapper; set it to the actual CLI executable.'
+  exit 1
+fi
+
+exec "$cli" "$@"

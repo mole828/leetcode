@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+source "${0:A:h}/scripts/lib/env.zsh" || exit $?
+setopt pipefail
+
+id="$1"
+lang="${2:-kotlin}"
+filename=""
+
+if [[ -z "$id" || "$id" == "-h" || "$id" == "--help" ]]; then
+  echo "Usage: leetcode-new <problem-id|today> [kotlin|rust]" >&2
+  echo "Example: leetcode-new 2784" >&2
+  echo "Example: leetcode-new today rust" >&2
+  exit 2
+fi
+
+if (( $# > 2 )); then
+  echo "Usage: leetcode-new <problem-id|today> [kotlin|rust]" >&2
+  exit 2
+fi
+
+case "$lang" in
+  kotlin) filename="Solution.kt" ;;
+  rust) filename="Solution.rs" ;;
+  *)
+    echo "Unsupported language: $lang (expected kotlin or rust)" >&2
+    exit 2
+    ;;
+esac
+
+if [[ "$id" == "today" ]]; then
+  id=$(curl -fsS "https://leetcode.com/graphql" \
+    -H "content-type: application/json" \
+    --data '{"query":"query questionOfToday { activeDailyCodingChallengeQuestion { question { questionFrontendId titleSlug } } }"}' \
+    | node -e 'let s="";process.stdin.on("data",d=>s+=d);process.stdin.on("end",()=>{const q=JSON.parse(s).data.activeDailyCodingChallengeQuestion.question; console.error("Today: [" + q.questionFrontendId + "] " + q.titleSlug); console.log(q.questionFrontendId);})') || exit $?
+fi
+
+if [[ ! "$id" =~ ^[0-9]+$ ]]; then
+  echo "leetcode-new expects a numeric problem id or today, got: $id" >&2
+  exit 2
+fi
+
+dir="${LEETCODE_ROOT}/problems/p${id}"
+
+mkdir -p "$dir" || exit $?
+# Keep an existing solution intact if the CLI fails.
+tmp=$(mktemp "$dir/.${filename}.XXXXXX") || exit $?
+trap 'rm -f -- "$tmp"' EXIT
+{
+  if [[ "$lang" == "kotlin" ]]; then
+    printf 'package p%s\n\n' "$id"
+  fi
+  "${0:A:h}/leetcode" show "$id" -c -x -l "$lang"
+} > "$tmp" || exit $?
+if [[ "$lang" == "rust" ]]; then
+  # LeetCode supplies Solution remotely; standalone Rust files need it locally.
+  node - "$tmp" <<'JS' || exit $?
+const fs = require('node:fs');
+const file = process.argv[2];
+const code = fs.readFileSync(file, 'utf8');
+if (/\bimpl\s+Solution\b/.test(code) && !/\bstruct\s+Solution\b/.test(code)) {
+  fs.writeFileSync(file, 'pub struct Solution;\n\n' + code);
+}
+JS
+fi
+mv -- "$tmp" "$dir/$filename" || exit $?
+if [[ "$lang" == "rust" ]]; then
+  node "${0:A:h}/scripts/lib/register-rust-module.cjs" "${dir:h:h}" "$id" "$filename"
+fi
