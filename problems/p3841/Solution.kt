@@ -311,7 +311,7 @@ class Solution {
         return answer
     }
 
-    class State(val node: Int, val visited: BooleanArray)
+    private class State(val node: Int, val visited: BooleanArray)
     @Deprecated("memory limit")
     fun palindromePathReference(n: Int, edges: Array<IntArray>, s: String, queries: Array<String>): List<Boolean> {
         val mat = mutableMapOf<Int, MutableSet<Int>>()
