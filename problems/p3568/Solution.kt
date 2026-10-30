@@ -8,7 +8,7 @@ package p3568
 
 // @lc code=start
 class Solution {
-    data class State(
+    private data class State(
         val position: Int,
         val energy: Int,
         val litterMask: Int
