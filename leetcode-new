@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-# Compatibility entry point; prefer `leetcode new` for new usage.
-exec "${0:A:h}/leetcode" new "$@"

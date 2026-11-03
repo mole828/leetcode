@@ -10,8 +10,7 @@
 ./leetcode show 2784        # 其他命令转发给外部 LeetCode CLI
 ```
 
-统一使用 `./leetcode` 作为入口；原来的 `./leetcode-new` 保留为
-`./leetcode new` 的兼容入口。创建命令支持题号或 `today`，语言支持 `kotlin` 和 `rust`。
+统一使用 `./leetcode` 作为入口。创建命令支持题号或 `today`，语言支持 `kotlin` 和 `rust`。
 
 工具自动加载项目根目录的 `.env`，配置项见 `.env.example`。
 外部 CLI 优先使用 `LEETCODE_CLI` 指定的路径，然后查找 `PATH`，
