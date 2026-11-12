@@ -10,7 +10,7 @@ import kotlin.math.abs
 
 // @lc code=start
 class Solution {
-    data class Status(val x: Int, val y: Int, val health: Int)
+    private data class Status(val x: Int, val y: Int, val health: Int)
     fun findSafeWalk(grid: List<List<Int>>, health: Int): Boolean {
         val targetY = grid.size - 1
         val targetX = grid.first().size - 1
