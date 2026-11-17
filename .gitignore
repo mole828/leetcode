@@ -8,6 +8,8 @@
 
 .fleet
 
+.qoder
+
 *.jar
 
 .gradle
